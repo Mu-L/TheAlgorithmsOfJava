@@ -55,6 +55,24 @@ public class SinglyLinkedList extends Node {
     }
 
     /**
+     * Return the node in the middle of the list
+     * If the length of the list is even then return item number length/2
+     * @return middle node of the list
+     */
+    public Node middle() {
+        if (head == null) {
+            return null;
+        }
+        Node firstCounter = head;
+        Node secondCounter = firstCounter.next;
+        while (secondCounter != null && secondCounter.next != null) {
+            firstCounter = firstCounter.next;
+            secondCounter = secondCounter.next.next;
+        }
+        return firstCounter;
+    }
+
+    /**
      * Swaps nodes of two given values a and b.
      *
      */
@@ -389,7 +407,7 @@ public class SinglyLinkedList extends Node {
         list.insert(3);
         list.insertNth(1, 4);
         assert list.toString().equals("10->7->5->3->1");
-        System.out.println(list.toString());
+        System.out.println(list);
         /* Test search function */
         assert list.search(10) &&
         list.search(5) &&
@@ -406,7 +424,7 @@ public class SinglyLinkedList extends Node {
         list.deleteNth(1);
         list.delete();
         assert list.toString().equals("7->3");
-        System.out.println(list.toString());
+        System.out.println(list);
         assert list.size == 2 && list.size() == list.count();
 
         list.clear();
